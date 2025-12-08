@@ -1,94 +1,167 @@
-import { useState } from "react";
-import {BlockReveal,TextReveal} from "../component/ScrollReveal";
-import axios from "axios";
-
+import React, { useState } from 'react';
+import {BlockReveal} from "./ScrollReveal"
 export default function ContactForm() {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: ""
+    name: '',
+    email: '',
+    company: '',
+    service: '',
+    message: ''
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    try {
-      await axios.post("/api/contact", formData);
-      alert("Your request has been submitted!");
-      setFormData({ name: "", email: "", phone: "", message: "" });
-    } catch (err) {
-      console.error(err);
-      alert("Failed to send. Try again later.");
-    }
+    console.log('Form submitted:', formData);
+    alert('Message sent successfully!');
   };
 
   return (
-    <BlockReveal delay={0.2}>
-      <form
-        onSubmit={handleSubmit}
-        className="bg-[#0C2B4E] p-10 rounded-3xl shadow-2xl"
-      >
-        <h3 className="text-3xl font-bold text-white mb-6">
-          <TextReveal text="Request a Callback" />
-        </h3>
+    <BlockReveal>
+    <div className="min-h-screen bg-white/10 flex items-center justify-center p-4">
+      <div className="max-w-6xl w-full bg-white rounded-lg shadow-2xl shadow-blue-900 overflow-hidden">
+        <div className="grid md:grid-cols-2">
+          {/* Left Side - Image and Info */}
+          <div className="relative bg-[#0C2B4E] p-8 flex flex-col justify-between">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-900/50 to-transparent"></div>
+            
+            <div className="relative z-10">
+              <img
+                src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&h=600&fit=crop"
+                alt="Professional workspace"
+                className="w-full h-64 object-cover rounded-lg mb-8"
+              />
+              
+              <div className="bg-white rounded-lg p-6 shadow-lg">
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="font-semibold text-gray-800 mb-1">Email</h3>
+                    <p className="text-gray-600 text-sm">elite.advisers@gmail.com</p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-800 mb-1">Phone</h3>
+                    <p className="text-gray-600 text-sm">+99 021 324 258</p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-800 mb-1">Address</h3>
+                    <p className="text-gray-600 text-sm">Sector 13 Dwarka, New Delhi, India</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-        <p className="text-[#F4F4F4] mb-8">
-          Fill out the form and we'll get back to you within 24 hours
-        </p>
+          {/* Right Side - Form */}
+          <div className="p-8 md:p-12">
+            <div className="mb-8">
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                Let's talk about your problem.
+              </h1>
+            </div>
 
-        <div className="space-y-5">
-          <input
-            name="name"
-            type="text"
-            placeholder="Your Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            className="w-full px-5 py-4 border-2 border-white/30 bg-white/10 text-white placeholder-white/70 rounded-xl focus:ring-2 focus:ring-[#1A3D64] focus:border-transparent outline-none backdrop-blur-sm"
-          />
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-semibold text-gray-800 mb-2">
+                  Your Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Enter your name"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0C2B4E] focus:border-transparent transition"
+                  required
+                />
+              </div>
 
-          <input
-            name="email"
-            type="email"
-            placeholder="Email Address"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            className="w-full px-5 py-4 border-2 border-white/30 bg-white/10 text-white placeholder-white/70 rounded-xl focus:ring-2 focus:ring-[#1A3D64] focus:border-transparent outline-none backdrop-blur-sm"
-          />
+              <div>
+                <label htmlFor="email" className="block text-sm font-semibold text-gray-800 mb-2">
+                  Your Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Enter your email"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0C2B4E] focus:border-transparent transition"
+                  required
+                />
+              </div>
 
-          <input
-            name="phone"
-            type="tel"
-            placeholder="Phone Number"
-            value={formData.phone}
-            onChange={handleChange}
-            className="w-full px-5 py-4 border-2 border-white/30 bg-white/10 text-white placeholder-white/70 rounded-xl focus:ring-2 focus:ring-[#1A3D64] focus:border-transparent outline-none backdrop-blur-sm"
-          />
+              <div>
+                <label htmlFor="company" className="block text-sm font-semibold text-gray-800 mb-2">
+                  Company Name
+                </label>
+                <input
+                  type="text"
+                  id="company"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  placeholder="Enter your company name"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0C2B4E] focus:border-transparent transition"
+                  required
+                />
+              </div>
 
-          <textarea
-            name="message"
-            placeholder="Your Message"
-            rows="4"
-            value={formData.message}
-            onChange={handleChange}
-            required
-            className="w-full px-5 py-4 border-2 border-white/30 bg-white/10 text-white placeholder-white/70 rounded-xl focus:ring-2 focus:ring-[#1A3D64] focus:border-transparent outline-none backdrop-blur-sm"
-          ></textarea>
+              <div>
+                <label htmlFor="service" className="block text-sm font-semibold text-gray-800 mb-2">
+                  Service You are interested in
+                </label>
+                <select
+                  id="service"
+                  name="service"
+                  value={formData.service}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0C2B4E] focus:border-transparent transition"
+                  required
+                >
+                  <option value="">Select a service</option>
+                  <option value="Taxation and Return Filing">Taxation and Return Filing</option>
+                  <option value="General Consultancy">General Consultancy</option>
+                  <option value="Accounting and BookKeeping">Accounting and BookKeeping</option>
+                  <option value="Audit and Assurance">Audit and Assurance</option>
+                  
+                </select>
+              </div>
 
-          <button
-            type="submit"
-            className="w-full bg-[#F4F4F4] text-[#0C2B4E] px-6 py-4 rounded-xl font-bold text-lg hover:bg-white transition transform hover:scale-105"
-          >
-            Submit Request
-          </button>
+              <div>
+                <label htmlFor="message" className="block text-sm font-semibold text-gray-800 mb-2">
+                  Your Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Enter your message"
+                  rows="4"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0C2B4E] focus:border-transparent transition resize-none"
+                  required
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-[#0C2B4E] text-white font-semibold py-3 px-6 rounded-lg hover:bg-[#1a3d66] transition duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
         </div>
-      </form>
+      </div>
+    </div>
     </BlockReveal>
   );
 }

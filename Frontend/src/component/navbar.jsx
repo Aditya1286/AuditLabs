@@ -47,18 +47,21 @@ const Navbar = () => {
                                     >
                                         General Consultancy
                                     </a>
-                                    <a
-                                        href="#taxation"
+                                    <Link
+
+                                        to="/taxation"
                                         onClick={() => setDropdownOpen(false)}
                                         className="block px-3 py-2 text-[#0C2B4E] hover:bg-gray-100 rounded"
                                     >
+                                        
                                         Taxation & Return Filing
-                                    </a>
+                                    </Link>
                                     <a
                                         href="#accounting"
                                         onClick={() => setDropdownOpen(false)}
                                         className="block px-3 py-2 text-[#0C2B4E] hover:bg-gray-100 rounded"
                                     >
+                                        
                                         Accounting & Bookkeeping
                                     </a>
                                     <a
@@ -75,12 +78,9 @@ const Navbar = () => {
                         <Link to="/about">
                             <div className="text-[#0C2B4E] hover:text-white hover:bg-[#0C2B4E] p-2 hover:rounded-xl font-medium transition-all duration-500 ease-in-out">About</div>
                         </Link>
-                        <a
-                            href="#contact"
-                            className="text-[#0C2B4E] hover:text-white hover:bg-[#0C2B4E] p-2 hover:rounded-xl font-medium transition-all duration-500 ease-in-out"
-                        >
-                            Contact
-                        </a>
+                        <Link to="/contact">
+                            <div className="text-[#0C2B4E] hover:text-white hover:bg-[#0C2B4E] p-2 hover:rounded-xl font-medium transition-all duration-500 ease-in-out">Contact Us</div>
+                        </Link>
 
                         <button className="bg-gradient-to-r from-[#1D546C] to-[#0C2B4E] text-white px-6 py-3 rounded-xl hover:shadow-lg transition transform hover:scale-105">
                             Sign Up
@@ -124,7 +124,7 @@ const Navbar = () => {
                         </div>
 
                         <Link to="/about"><div className="block text-[#0C2B4E] hover:text-[#1D546C] font-medium">About</div></Link>
-                        <a href="#contact" className="block text-[#0C2B4E] hover:text-[#1D546C] font-medium">Contact</a>
+                        <Link to="/contact"><div className="block text-[#0C2B4E] hover:text-[#1D546C] font-medium">Contact Us</div></Link>
 
                         <button className="w-full bg-gradient-to-r from-[#1D546C] to-[#0C2B4E] text-white px-6 py-3 rounded-xl">
                             Get Started
